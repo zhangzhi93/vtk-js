@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">79.27% </span>
+                <span class="strong">78.8% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>505/637</span>
+                <span class='fraction'>502/637</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">67.56% </span>
+                <span class="strong">66.96% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>150/222</span>
+                <span class='fraction'>150/224</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">84.37% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>28/32</span>
+                <span class='fraction'>27/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.99% </span>
+                <span class="strong">78.51% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>489/619</span>
+                <span class='fraction'>486/619</span>
             </div>
         
             
@@ -1587,7 +1587,9 @@
 <a name='L1522'></a><a href='#L1522'>1522</a>
 <a name='L1523'></a><a href='#L1523'>1523</a>
 <a name='L1524'></a><a href='#L1524'>1524</a>
-<a name='L1525'></a><a href='#L1525'>1525</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L1525'></a><a href='#L1525'>1525</a>
+<a name='L1526'></a><a href='#L1526'>1526</a>
+<a name='L1527'></a><a href='#L1527'>1527</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2155,6 +2157,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2549,13 +2553,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
@@ -3678,7 +3682,9 @@ function vtkOpenGLVolumeMapper(publicAPI, model) {
         'zBufferTexture',
         model.zBufferTexture.getTextureUnit()
       );
-      const size = publicAPI.getRenderTargetSize();
+      const size = model._useSmallViewport
+        ? <span class="branch-0 cbranch-no" title="branch not covered" >[model._smallViewportWidth, model._smallViewportHeight]</span>
+        : model._openGLRenderWindow.getFramebufferSize();
       program.setUniformf('vpWidth', size[0]);
       program.setUniformf('vpHeight', size[1]);
     }
@@ -4072,14 +4078,14 @@ function vtkOpenGLVolumeMapper(publicAPI, model) {
     }
   }, publicAPI.delete);
 &nbsp;
-  publicAPI.getRenderTargetSize = () =&gt; {
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (model._useSmallViewport) {
+  publicAPI.getRenderTargetSize = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    if (model._useSmallViewport) {</span>
 <span class="cstat-no" title="statement not covered" >      return [model._smallViewportWidth, model._smallViewportHeight];</span>
     }
 &nbsp;
-    const { usize, vsize } = model.openGLRenderer.getTiledSizeAndOrigin();
+    const { usize, vsize } = <span class="cstat-no" title="statement not covered" >model.openGLRenderer.getTiledSizeAndOrigin();</span>
 &nbsp;
-    return [usize, vsize];
+<span class="cstat-no" title="statement not covered" >    return [usize, vsize];</span>
   };
 &nbsp;
   publicAPI.getRenderTargetOffset = <span class="fstat-no" title="function not covered" >()</span> =&gt; {
@@ -4642,7 +4648,7 @@ registerOverride('vtkVolumeMapper', newInstance);
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Apr 08 2022 14:18:08 GMT+0000 (Coordinated Universal Time)
+                at Mon May 09 2022 21:33:13 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -805,7 +805,16 @@
 <a name='L740'></a><a href='#L740'>740</a>
 <a name='L741'></a><a href='#L741'>741</a>
 <a name='L742'></a><a href='#L742'>742</a>
-<a name='L743'></a><a href='#L743'>743</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L743'></a><a href='#L743'>743</a>
+<a name='L744'></a><a href='#L744'>744</a>
+<a name='L745'></a><a href='#L745'>745</a>
+<a name='L746'></a><a href='#L746'>746</a>
+<a name='L747'></a><a href='#L747'>747</a>
+<a name='L748'></a><a href='#L748'>748</a>
+<a name='L749'></a><a href='#L749'>749</a>
+<a name='L750'></a><a href='#L750'>750</a>
+<a name='L751'></a><a href='#L751'>751</a>
+<a name='L752'></a><a href='#L752'>752</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1043,20 +1052,21 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1127,7 +1137,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1151,13 +1160,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1234,8 +1254,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1552,7 +1570,7 @@ import vtkPolyData from 'vtk.js/Sources/Common/DataModel/PolyData';
 import vtkProperty from 'vtk.js/Sources/Rendering/Core/Property';
 import vtkRenderPass from 'vtk.js/Sources/Rendering/SceneGraph/RenderPass';
 import vtkWebGPUBufferManager from 'vtk.js/Sources/Rendering/WebGPU/BufferManager';
-import vtkWebGPUMapperHelper from 'vtk.js/Sources/Rendering/WebGPU/MapperHelper';
+import vtkWebGPUSimpleMapper from 'vtk.js/Sources/Rendering/WebGPU/SimpleMapper';
 import vtkWebGPURenderEncoder from 'vtk.js/Sources/Rendering/WebGPU/RenderEncoder';
 import vtkWebGPUShaderCache from 'vtk.js/Sources/Rendering/WebGPU/ShaderCache';
 import vtkWebGPUTexture from 'vtk.js/Sources/Rendering/WebGPU/Texture';
@@ -1780,11 +1798,6 @@ function <span class="fstat-no" title="function not covered" >vtkWebGPUVolumePas
     // copy back to the original color buffer
 &nbsp;
     // final composite
-<span class="cstat-no" title="statement not covered" >    model._copyEncoder.setColorTextureView(0, model.colorTextureView);</span>
-<span class="cstat-no" title="statement not covered" >    model._copyEncoder.attachTextureViews();</span>
-<span class="cstat-no" title="statement not covered" >    renNode.setRenderEncoder(model._copyEncoder);</span>
-<span class="cstat-no" title="statement not covered" >    model._copyEncoder.begin(viewNode.getCommandEncoder());</span>
-<span class="cstat-no" title="statement not covered" >    renNode.scissorAndViewport(model._copyEncoder);</span>
 <span class="cstat-no" title="statement not covered" >    model._volumeCopyQuad.setWebGPURenderer(renNode);</span>
 <span class="cstat-no" title="statement not covered" >    if (model._useSmallViewport) {</span>
       const width = <span class="cstat-no" title="statement not covered" >model._colorTextureView.getTexture().getWidth();</span>
@@ -1797,7 +1810,13 @@ function <span class="fstat-no" title="function not covered" >vtkWebGPUVolumePas
 <span class="cstat-no" title="statement not covered" >      model._copyUBO.setArray('tscale', [1.0, 1.0]);</span>
     }
 <span class="cstat-no" title="statement not covered" >    model._copyUBO.sendIfNeeded(device);</span>
-<span class="cstat-no" title="statement not covered" >    model._volumeCopyQuad.render(model._copyEncoder, viewNode.getDevice());</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    model._copyEncoder.setColorTextureView(0, model.colorTextureView);</span>
+<span class="cstat-no" title="statement not covered" >    model._copyEncoder.attachTextureViews();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >    model._copyEncoder.begin(viewNode.getCommandEncoder());</span>
+<span class="cstat-no" title="statement not covered" >    renNode.scissorAndViewport(model._copyEncoder);</span>
+<span class="cstat-no" title="statement not covered" >    model._volumeCopyQuad.prepareAndDraw(model._copyEncoder);</span>
 <span class="cstat-no" title="statement not covered" >    model._copyEncoder.end();</span>
   };
 &nbsp;
@@ -1870,7 +1889,6 @@ function <span class="fstat-no" title="function not covered" >vtkWebGPUVolumePas
       ? model._clearEncoder
       : model._mergeEncoder;
 <span class="cstat-no" title="statement not covered" >    encoder.attachTextureViews();</span>
-<span class="cstat-no" title="statement not covered" >    renNode.setRenderEncoder(encoder);</span>
 <span class="cstat-no" title="statement not covered" >    encoder.begin(viewNode.getCommandEncoder());</span>
     let width = <span class="cstat-no" title="statement not covered" >model._colorTextureView.getTexture().getWidth();</span>
     let height = <span class="cstat-no" title="statement not covered" >model._colorTextureView.getTexture().getHeight();</span>
@@ -1884,7 +1902,7 @@ function <span class="fstat-no" title="function not covered" >vtkWebGPUVolumePas
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    model.fullScreenQuad.setWebGPURenderer(renNode);</span>
 <span class="cstat-no" title="statement not covered" >    model.fullScreenQuad.setVolumes(volumes);</span>
-<span class="cstat-no" title="statement not covered" >    model.fullScreenQuad.render(encoder, viewNode.getDevice());</span>
+<span class="cstat-no" title="statement not covered" >    model.fullScreenQuad.prepareAndDraw(encoder);</span>
 <span class="cstat-no" title="statement not covered" >    encoder.end();</span>
   };
 &nbsp;
@@ -1892,19 +1910,30 @@ function <span class="fstat-no" title="function not covered" >vtkWebGPUVolumePas
 <span class="cstat-no" title="statement not covered" >    publicAPI.updateDepthPolyData(renNode);</span>
 &nbsp;
     const pd = <span class="cstat-no" title="statement not covered" >model._boundsPoly;</span>
-    const cells = <span class="cstat-no" title="statement not covered" >pd.getPolys();</span>
-    // points
     const points = <span class="cstat-no" title="statement not covered" >pd.getPoints();</span>
-    const buffRequest = <span class="cstat-no" title="statement not covered" >{</span>
-      owner: points,
-      usage: BufferUsage.PointArray,
-      format: 'float32x4',
-      time: Math.max(points.getMTime(), cells.getMTime()),
-      hash: 'vp',
-      dataArray: points,
+    const cells = <span class="cstat-no" title="statement not covered" >pd.getPolys();</span>
+&nbsp;
+    let buffRequest = <span class="cstat-no" title="statement not covered" >{</span>
+      hash: `vp${cells.getMTime()}`,
+      usage: BufferUsage.Index,
       cells,
+      numberOfPoints: points.getNumberOfPoints(),
       primitiveType: PrimitiveTypes.Triangles,
       representation: Representation.SURFACE,
+    };
+    const indexBuffer = <span class="cstat-no" title="statement not covered" >viewNode</span>
+      .getDevice()
+      .getBufferManager()
+      .getBuffer(buffRequest);
+<span class="cstat-no" title="statement not covered" >    model._mapper.getVertexInput().setIndexBuffer(indexBuffer);</span>
+&nbsp;
+    // points
+<span class="cstat-no" title="statement not covered" >    buffRequest = {</span>
+      usage: BufferUsage.PointArray,
+      format: 'float32x4',
+      hash: `vp${points.getMTime()}${cells.getMTime()}`,
+      dataArray: points,
+      indexBuffer,
       packExtra: true,
     };
     const buff = <span class="cstat-no" title="statement not covered" >viewNode.getDevice().getBufferManager().getBuffer(buffRequest);</span>
@@ -1976,8 +2005,6 @@ function <span class="fstat-no" title="function not covered" >vtkWebGPUVolumePas
   };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  publicAPI.drawDepthRange = <span class="fstat-no" title="function not covered" >(r</span>enNode, viewNode) =&gt; {</span>
-    const device = <span class="cstat-no" title="statement not covered" >viewNode.getDevice();</span>
-&nbsp;
     // copy current depth buffer to
 <span class="cstat-no" title="statement not covered" >    model._depthRangeTexture.resizeToMatch(model.colorTextureView.getTexture());</span>
 <span class="cstat-no" title="statement not covered" >    model._depthRangeTexture2.resizeToMatch(</span>
@@ -1991,8 +2018,8 @@ function <span class="fstat-no" title="function not covered" >vtkWebGPUVolumePas
 <span class="cstat-no" title="statement not covered" >    renNode.volumeDepthRangePass(true);</span>
 <span class="cstat-no" title="statement not covered" >    model._mapper.setWebGPURenderer(renNode);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    model._mapper.build(model._depthRangeEncoder, device);</span>
-<span class="cstat-no" title="statement not covered" >    model._mapper.registerToDraw();</span>
+<span class="cstat-no" title="statement not covered" >    model._mapper.prepareToDraw(model._depthRangeEncoder);</span>
+<span class="cstat-no" title="statement not covered" >    model._mapper.registerDrawCallback(model._depthRangeEncoder);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >    renNode.volumeDepthRangePass(false);</span>
   };
@@ -2264,7 +2291,7 @@ export function <span class="fstat-no" title="function not covered" >extend(</sp
 <span class="cstat-no" title="statement not covered" >  vtkRenderPass.extend(publicAPI, model, initialValues);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  model._lastScale = 2.0;</span>
-<span class="cstat-no" title="statement not covered" >  model._mapper = vtkWebGPUMapperHelper.newInstance();</span>
+<span class="cstat-no" title="statement not covered" >  model._mapper = vtkWebGPUSimpleMapper.newInstance();</span>
 <span class="cstat-no" title="statement not covered" >  model._mapper.setFragmentShaderTemplate(DepthBoundsFS);</span>
 <span class="cstat-no" title="statement not covered" >  model._mapper</span>
     .getShaderReplacements()
@@ -2296,7 +2323,7 @@ export default { newInstance, extend };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Apr 08 2022 14:18:08 GMT+0000 (Coordinated Universal Time)
+                at Mon May 09 2022 21:33:13 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -196,7 +196,13 @@
 <a name='L131'></a><a href='#L131'>131</a>
 <a name='L132'></a><a href='#L132'>132</a>
 <a name='L133'></a><a href='#L133'>133</a>
-<a name='L134'></a><a href='#L134'>134</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,7 +240,6 @@
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -242,8 +247,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -314,6 +325,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -347,7 +359,7 @@ function vtkSpline3D(publicAPI, model) {
 &nbsp;
   // --------------------------------------------------------------------------
 &nbsp;
-  function computeCoefficients1D(spline, points) {
+  function computeCoefficients1D(spline, points, boundaryConditionValue) {
     <span class="missing-if-branch" title="if path not taken" >I</span>if (points.length === 0) {
 <span class="cstat-no" title="statement not covered" >      vtkErrorMacro('Splines require at least one points');</span>
     }
@@ -363,20 +375,25 @@ function vtkSpline3D(publicAPI, model) {
     let work = null;
     let intervals = null;
 &nbsp;
-    if (model.close) {
-      work = new Float32Array(size);
-      if (model.intervals.length === 0) {
-        intervals = new Float32Array(size);
-        for (let i = 0; i &lt; intervals.length; i++) {
-          intervals[i] = i;
-        }
-      } else <span class="missing-if-branch" title="else path not taken" >E</span>{
-<span class="cstat-no" title="statement not covered" >        intervals = model.intervals;</span>
+    work = new Float32Array(size);
+    if (model.intervals.length === 0) {
+      intervals = new Float32Array(size);
+      for (let i = 0; i &lt; intervals.length; i++) {
+        intervals[i] = i;
       }
+    } else <span class="missing-if-branch" title="else path not taken" >E</span>{
+<span class="cstat-no" title="statement not covered" >      intervals = model.intervals;</span>
+    }
 &nbsp;
+    if (model.close) {
       spline.computeCloseCoefficients(size, work, intervals, points);
     } else <span class="missing-if-branch" title="else path not taken" >E</span>{
-<span class="cstat-no" title="statement not covered" >      vtkErrorMacro('Open splines are not supported yet!');</span>
+<span class="cstat-no" title="statement not covered" >      spline.computeOpenCoefficients(size, work, intervals, points, {</span>
+        leftConstraint: model.boundaryCondition,
+        leftValue: boundaryConditionValue,
+        rightConstraint: model.boundaryCondition,
+        rightValue: boundaryConditionValue,
+      });
     }
   }
 &nbsp;
@@ -387,9 +404,9 @@ function vtkSpline3D(publicAPI, model) {
     const y = points.map((pt) =&gt; pt[1]);
     const z = points.map((pt) =&gt; pt[2]);
 &nbsp;
-    computeCoefficients1D(model.splineX, x);
-    computeCoefficients1D(model.splineY, y);
-    computeCoefficients1D(model.splineZ, z);
+    computeCoefficients1D(model.splineX, x, model.boundaryConditionValues[0]);
+    computeCoefficients1D(model.splineY, y, model.boundaryConditionValues[1]);
+    computeCoefficients1D(model.splineZ, z, model.boundaryConditionValues[2]);
   };
 &nbsp;
   // --------------------------------------------------------------------------
@@ -437,6 +454,7 @@ const DEFAULT_VALUES = {
   close: false,
   intervals: [],
   kind: splineKind.KOCHANEK_SPLINE,
+  boundaryConditionValues: [0, 0, 0],
 &nbsp;
   // Passed to the vtkKochanekSpline1D
   tension: 0,
@@ -469,7 +487,7 @@ export default { newInstance, extend };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Apr 08 2022 14:18:08 GMT+0000 (Coordinated Universal Time)
+                at Mon May 09 2022 21:33:13 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">4.05% </span>
+                <span class="strong">4.1% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>3/74</span>
+                <span class='fraction'>3/73</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">4.1% </span>
+                <span class="strong">4.16% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>3/73</span>
+                <span class='fraction'>3/72</span>
             </div>
         
             
@@ -354,10 +354,7 @@
 <a name='L289'></a><a href='#L289'>289</a>
 <a name='L290'></a><a href='#L290'>290</a>
 <a name='L291'></a><a href='#L291'>291</a>
-<a name='L292'></a><a href='#L292'>292</a>
-<a name='L293'></a><a href='#L293'>293</a>
-<a name='L294'></a><a href='#L294'>294</a>
-<a name='L295'></a><a href='#L295'>295</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L292'></a><a href='#L292'>292</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -476,14 +473,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -523,6 +516,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -770,14 +764,10 @@ function <span class="fstat-no" title="function not covered" >vtkWebGPUOrderInde
       model.colorTextureView
     );
 <span class="cstat-no" title="statement not covered" >    model.translucentFinalEncoder.attachTextureViews();</span>
-<span class="cstat-no" title="statement not covered" >    renNode.setRenderEncoder(model.translucentFinalEncoder);</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >    model.translucentFinalEncoder.begin(viewNode.getCommandEncoder());</span>
-    // set viewport
 <span class="cstat-no" title="statement not covered" >    renNode.scissorAndViewport(model.translucentFinalEncoder);</span>
-<span class="cstat-no" title="statement not covered" >    model.fullScreenQuad.render(</span>
-      model.translucentFinalEncoder,
-      viewNode.getDevice()
-    );
+<span class="cstat-no" title="statement not covered" >    model.fullScreenQuad.prepareAndDraw(model.translucentFinalEncoder);</span>
 <span class="cstat-no" title="statement not covered" >    model.translucentFinalEncoder.end();</span>
   };
 &nbsp;
@@ -817,13 +807,14 @@ function <span class="fstat-no" title="function not covered" >vtkWebGPUOrderInde
 <span class="cstat-no" title="statement not covered" >      fDesc.addOutput('f32', 'outAccum');</span>
 <span class="cstat-no" title="statement not covered" >      fDesc.addBuiltinInput('vec4&lt;f32&gt;', '@builtin(position) fragPos');</span>
       let code = <span class="cstat-no" title="statement not covered" >fDesc.getCode();</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >      code = vtkWebGPUShaderCache.substitute(</span>
         code,
         '//VTK::RenderEncoder::Impl',
         [
-          // very simple depth weighting in w
-          'var w: f32 = 1.0 - input.fragPos.z * 0.9;',
-          'output.outColor = vec4&lt;f32&gt;(computedColor.rgb*computedColor.a, computedColor.a) * w;',
+          // very simple depth weighting in w z ranges from 1.0 near to 0.0
+          'var w: f32 = computedColor.a * pow(0.1 + input.fragPos.z, 2.0);',
+          'output.outColor = vec4&lt;f32&gt;(computedColor.rgb*w, w);',
           'output.outAccum = computedColor.a;',
         ]
       ).result;
@@ -952,7 +943,7 @@ export default { newInstance, extend };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Fri Apr 08 2022 14:18:08 GMT+0000 (Coordinated Universal Time)
+                at Mon May 09 2022 21:33:13 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
