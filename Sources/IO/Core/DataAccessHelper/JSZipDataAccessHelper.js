@@ -1,5 +1,5 @@
 import JSZip from 'jszip';
-import pako from 'pako';
+import { unzlibSync, strFromU8 } from 'fflate';
 
 import macro from 'vtk.js/Sources/macros';
 import Endian from 'vtk.js/Sources/Common/Core/Endian';
@@ -26,11 +26,9 @@ function handleUint8Array(array, compression, done) {
 
     if (compression) {
       if (array.dataType === 'string' || array.dataType === 'JSON') {
-        array.buffer = pako.inflate(new Uint8Array(array.buffer), {
-          to: 'string',
-        });
+        array.buffer = strFromU8(unzlibSync(new Uint8Array(array.buffer)));
       } else {
-        array.buffer = pako.inflate(new Uint8Array(array.buffer)).buffer;
+        array.buffer = unzlibSync(new Uint8Array(array.buffer)).buffer;
       }
     }
 
@@ -59,7 +57,7 @@ function handleUint8Array(array, compression, done) {
 function handleString(array, compression, done) {
   return (string) => {
     if (compression) {
-      array.values = JSON.parse(pako.inflate(string, { to: 'string' }));
+      array.values = JSON.parse(strFromU8(unzlibSync(string)));
     } else {
       array.values = JSON.parse(string);
     }
@@ -165,7 +163,7 @@ function create(createOptions) {
             .file(path)
             .async('uint8array')
             .then((uint8array) => {
-              const str = pako.inflate(uint8array, { to: 'string' });
+              const str = strFromU8(unzlibSync(uint8array));
               return Promise.resolve(JSON.parse(str));
             });
         }
@@ -189,7 +187,7 @@ function create(createOptions) {
             .file(path)
             .async('uint8array')
             .then((uint8array) => {
-              const str = pako.inflate(uint8array, { to: 'string' });
+              const str = strFromU8(unzlibSync(uint8array));
               return Promise.resolve(str);
             });
         }
@@ -231,7 +229,7 @@ function create(createOptions) {
       if (options.compression) {
         if (options.compression === 'gz') {
           return zipRoot.file(path).then((data) => {
-            const array = pako.inflate(data).buffer;
+            const array = unzlibSync(data).buffer;
             return Promise.resolve(array);
           });
         }
