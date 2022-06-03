@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">32.63% </span>
+                <span class="strong">32.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>155/475</span>
+                <span class='fraction'>155/478</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">11.61% </span>
+                <span class="strong">11.33% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>28/241</span>
+                <span class='fraction'>28/247</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">32.9% </span>
+                <span class="strong">32.69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>154/468</span>
+                <span class='fraction'>154/471</span>
             </div>
         
             
@@ -1648,6 +1648,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1657,7 +1658,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1991,7 +1991,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2006,7 +2006,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2043,7 +2043,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2845,17 +2845,17 @@ function vtkRenderWindowInteractor(publicAPI, model) {
 <span class="cstat-no" title="statement not covered" >    if (pointerCache.has(event.pointerId)) {</span>
       const pointer = <span class="cstat-no" title="statement not covered" >pointerCache.get(event.pointerId);</span>
 <span class="cstat-no" title="statement not covered" >      pointer.position = getScreenEventPositionFor(event);</span>
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      switch (event.pointerType) {</span>
-        case 'pen':
-        case 'touch':
-<span class="cstat-no" title="statement not covered" >          publicAPI.handleTouchMove(event);</span>
-<span class="cstat-no" title="statement not covered" >          break;</span>
-        case 'mouse':
-        default:
-<span class="cstat-no" title="statement not covered" >          publicAPI.handleMouseMove(event);</span>
-<span class="cstat-no" title="statement not covered" >          break;</span>
-      }
+<span class="cstat-no" title="statement not covered" >    switch (event.pointerType) {</span>
+      case 'pen':
+      case 'touch':
+<span class="cstat-no" title="statement not covered" >        publicAPI.handleTouchMove(event);</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
+      case 'mouse':
+      default:
+<span class="cstat-no" title="statement not covered" >        publicAPI.handleMouseMove(event);</span>
+<span class="cstat-no" title="statement not covered" >        break;</span>
     }
   };
 &nbsp;
@@ -3189,7 +3189,7 @@ function vtkRenderWindowInteractor(publicAPI, model) {
       }
       // handle the gesture
 <span class="cstat-no" title="statement not covered" >      publicAPI.recognizeGesture('TouchStart', positions);</span>
-    } else {
+    } else <span class="cstat-no" title="statement not covered" >if (pointers.length === 1) {</span>
       const callData = <span class="cstat-no" title="statement not covered" >{</span>
         ...getModifierKeysFor(EMPTY_MOUSE_EVENT),
         position: getScreenEventPositionFor(event),
@@ -3204,7 +3204,7 @@ function vtkRenderWindowInteractor(publicAPI, model) {
 <span class="cstat-no" title="statement not covered" >    if (model.recognizeGestures &amp;&amp; pointers.length &gt; 1) {</span>
       const positions = <span class="cstat-no" title="statement not covered" >pointerCacheToPositions(pointerCache);</span>
 <span class="cstat-no" title="statement not covered" >      publicAPI.recognizeGesture('TouchMove', positions);</span>
-    } else {
+    } else <span class="cstat-no" title="statement not covered" >if (pointers.length === 1) {</span>
       const callData = <span class="cstat-no" title="statement not covered" >{</span>
         ...getModifierKeysFor(EMPTY_MOUSE_EVENT),
         position: pointers[0].position,
@@ -3241,7 +3241,7 @@ function vtkRenderWindowInteractor(publicAPI, model) {
         const positions = <span class="cstat-no" title="statement not covered" >pointerCacheToPositions(pointerCache);</span>
 <span class="cstat-no" title="statement not covered" >        publicAPI.recognizeGesture('TouchMove', positions);</span>
       }
-    } else {
+    } else <span class="cstat-no" title="statement not covered" >if (pointers.length === 1) {</span>
       const callData = <span class="cstat-no" title="statement not covered" >{</span>
         ...getModifierKeysFor(EMPTY_MOUSE_EVENT),
         position: pointers[0].position,
@@ -3664,7 +3664,7 @@ export default { newInstance, extend, handledEvents, ...Constants };
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Thu Jun 02 2022 20:41:26 GMT+0000 (Coordinated Universal Time)
+                at Fri Jun 03 2022 16:53:59 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
