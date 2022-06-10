@@ -20,8 +20,8 @@ export interface IPropInitialValues {
 export interface vtkProp extends vtkObject {
 
     /**
-     * 
-     * @param estimatedRenderTime 
+     *
+     * @param estimatedRenderTime
      */
     addEstimatedRenderTime(estimatedRenderTime: number): void;
 
@@ -83,32 +83,32 @@ export interface vtkProp extends vtkObject {
     getNestedPickable(): boolean;
 
     /**
-     * Return the mtime of anything that would cause the rendered image to appear differently. 
-     * Usually this involves checking the mtime of the prop plus anything else it depends on such as properties, 
+     * Return the mtime of anything that would cause the rendered image to appear differently.
+     * Usually this involves checking the mtime of the prop plus anything else it depends on such as properties,
      * textures etc.
      */
     getRedrawMTime(): number
 
     /**
-     * 
+     *
      */
     getRendertimemultiplier(): number;
 
     /**
      * The value is returned in seconds. For simple geometry the accuracy may not be great
-     * due to buffering. For ray casting, which is already multi-resolution, 
-     * the current resolution of the image is factored into the time. We need the viewport 
+     * due to buffering. For ray casting, which is already multi-resolution,
+     * the current resolution of the image is factored into the time. We need the viewport
      * for viewing parameters that affect timing. The no-arguments version simply returns the value of the variable with no estimation.
      */
     getEstimatedRenderTime(): number;
 
     /**
-     * 
+     *
      */
     getAllocatedRenderTime(): number;
 
     /**
-     * 
+     *
      */
     getNestedProps(): any;
 
@@ -119,47 +119,47 @@ export interface vtkProp extends vtkObject {
     getParentProp(): vtkProp;
 
     /**
-     * 
+     *
      * Not implemented yet
      */
     getVolumes(): vtkVolume[];
 
     /**
-     * 
+     *
      */
     getUseBounds(): boolean;
 
     /**
-     * 
+     *
      */
     getSupportsSelection(): boolean;
 
     /**
-     * 
+     *
      */
     getTextures(): vtkTexture[];
 
     /**
-     * 
+     *
      * @param {vtkTexture} texture The vtkTexture instance.
      *
      */
     hasTexture(texture: vtkTexture): boolean;
 
     /**
-     * 
+     *
      * @param {vtkTexture} texture The vtkTexture instance.
      */
     addTexture(texture: vtkTexture): void;
 
     /**
-     * 
+     *
      * @param {vtkTexture} texture The vtkTexture instance.
      */
     removeTexture(texture: vtkTexture): void;
 
     /**
-     * 
+     *
      */
     removeAllTextures(): void;
 
@@ -169,15 +169,15 @@ export interface vtkProp extends vtkObject {
     restoreEstimatedRenderTime(): void;
 
     /**
-     * 
-     * @param allocatedRenderTime 
+     *
+     * @param allocatedRenderTime
      */
     setAllocatedRenderTime(allocatedRenderTime: number): void;
 
     /**
      * Set whether prop is dragable.
      * Even if true, prop may not be dragable if an ancestor prop is not dragable.
-     * @param dragable 
+     * @param dragable
      * @default true
      * @see getDragable
      * @see combineDragable
@@ -185,8 +185,8 @@ export interface vtkProp extends vtkObject {
     setDragable(dragable: boolean): boolean;
 
     /**
-     * 
-     * @param estimatedRenderTime 
+     *
+     * @param estimatedRenderTime
      */
     setEstimatedRenderTime(estimatedRenderTime: number): void;
 
@@ -221,7 +221,7 @@ export interface vtkProp extends vtkObject {
     setVisibility(visibility: boolean): boolean;
 
     /**
-     * In case the Visibility flag is true, tell if the bounds of this prop should be taken into 
+     * In case the Visibility flag is true, tell if the bounds of this prop should be taken into
      * account or ignored during the computation of other bounding boxes, like in vtkRenderer::ResetCamera().
      * @param useBounds
      * @default true
@@ -230,11 +230,25 @@ export interface vtkProp extends vtkObject {
 
     /**
      * This is used for culling and is a number between 0 and 1. It is used to create the allocated render time value.
-     * @param {Number} renderTimeMultiplier 
+     * @param {Number} renderTimeMultiplier
      */
     setRenderTimeMultiplier(renderTimeMultiplier: number): boolean;
 
     /**
+     * Indicate that this prop's data should be in world coordinates.
+     * Not all mappers support all coordinate systems.
+     */
+    setCoordinateSystemToWorld(): void;
+
+    /**
+     * Indicate that this prop's data should be in display coordinates.
+     * That is pixel coordinate with 0,0 in the lower left of the viewport
+     * and a z range of -1 at the near plane and 1 at the far.
+     * Not all mappers support all coordinate systems.
+     */
+     setCoordinateSystemToDisplay(): void;
+
+     /**
      * Not Implemented yet
      * Method fires PickEvent if the prop is picked.
      */
@@ -263,7 +277,7 @@ export function extend(publicAPI: object, model: object, initialValues?: IPropIn
 export function newInstance(initialValues?: IPropInitialValues): vtkProp;
 
 
-/** 
+/**
  * vtkProp is an abstract superclass for any objects that can exist in a
  * rendered scene (either 2D or 3D). Instances of vtkProp may respond to
  * various render methods (e.g., RenderOpaqueGeometry()). vtkProp also
