@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50.37% </span>
+                <span class="strong">50.49% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>204/405</span>
+                <span class='fraction'>205/406</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50.37% </span>
+                <span class="strong">50.5% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>201/399</span>
+                <span class='fraction'>202/400</span>
             </div>
         
             
@@ -1396,7 +1396,9 @@
 <a name='L1331'></a><a href='#L1331'>1331</a>
 <a name='L1332'></a><a href='#L1332'>1332</a>
 <a name='L1333'></a><a href='#L1333'>1333</a>
-<a name='L1334'></a><a href='#L1334'>1334</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L1334'></a><a href='#L1334'>1334</a>
+<a name='L1335'></a><a href='#L1335'>1335</a>
+<a name='L1336'></a><a href='#L1336'>1336</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1489,6 +1491,26 @@
 <span class="cline-any cline-yes">175x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">175x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">175x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">175x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">175x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">175x</span>
@@ -1643,9 +1665,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1661,21 +1680,6 @@
 <span class="cline-any cline-yes">183x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">183x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -2823,6 +2827,26 @@ function vtkOpenGLRenderWindow(publicAPI, model) {
 &nbsp;
   publicAPI.getViewNodeFactory = <span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >model.myFactory;</span>
 &nbsp;
+  // prevent default context lost handler
+  model.canvas.addEventListener(
+    'webglcontextlost',
+<span class="fstat-no" title="function not covered" >    (e</span>vent) =&gt; {
+<span class="cstat-no" title="statement not covered" >      event.preventDefault();</span>
+    },
+    false
+  );
+&nbsp;
+  model.canvas.addEventListener(
+    'webglcontextrestored',
+    publicAPI.restoreContext,
+    false
+  );
+&nbsp;
+  // Cache the value here as calling it on each frame is expensive
+  const isImmersiveVrSupported =
+    navigator.xr !== undefined &amp;&amp;
+<span class="branch-1 cbranch-no" title="branch not covered" >    navigator.xr.isSessionSupported('immersive-vr');</span>
+&nbsp;
   // Auto update style
   const previousSize = [0, 0];
   function updateWindow() {
@@ -2975,10 +2999,7 @@ function vtkOpenGLRenderWindow(publicAPI, model) {
     let result = null;
 &nbsp;
     // Do we have webxr support
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (
-      navigator.xr !== undefined &amp;&amp;
-<span class="branch-1 cbranch-no" title="branch not covered" >      navigator.xr.isSessionSupported('immersive-vr')</span>
-    ) {
+    <span class="missing-if-branch" title="if path not taken" >I</span>if (isImmersiveVrSupported) {
 <span class="cstat-no" title="statement not covered" >      publicAPI.invokeHaveVRDisplay();</span>
     }
 &nbsp;
@@ -2997,21 +3018,6 @@ function vtkOpenGLRenderWindow(publicAPI, model) {
         model.canvas.getContext('webgl', options) ||
         model.canvas.getContext('experimental-webgl', options);
     }
-&nbsp;
-    // prevent default context lost handler
-    model.canvas.addEventListener(
-      'webglcontextlost',
-<span class="fstat-no" title="function not covered" >      (e</span>vent) =&gt; {
-<span class="cstat-no" title="statement not covered" >        event.preventDefault();</span>
-      },
-      false
-    );
-&nbsp;
-    model.canvas.addEventListener(
-      'webglcontextrestored',
-      publicAPI.restoreContext,
-      false
-    );
 &nbsp;
     return result;
   };
@@ -4069,7 +4075,7 @@ export default {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Mon Jun 13 2022 18:46:50 GMT+0000 (Coordinated Universal Time)
+                at Tue Jun 14 2022 12:51:23 GMT+0000 (Coordinated Universal Time)
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
