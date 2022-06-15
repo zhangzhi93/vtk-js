@@ -41,15 +41,15 @@
   <!-- RSS -->
   <link rel="alternate" href="/vtk-js/atom.xml" title="vtk.js" type="application/atom+xml">
   <!-- Open Graph -->
-  <meta name="description" content="The abstract class that implements some shared functionality used by widgets. Inreality, there aren’t any abstract methods to implement, as widgets areconstructed via vtkAbstractWidgetFactory. vtkAbst">
+  <meta name="description" content="IntroductionvtkAbstractWidget is an abstract class to construct a widget. MethodsactivateHandleActivate a handle, identified by both a state and a representation.Will also invoke appropriate events.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="AbstractWidget">
 <meta property="og:url" content="https://kitware.github.io/vtk-js/api/Widgets_Core_AbstractWidget.html">
 <meta property="og:site_name" content="vtk.js">
-<meta property="og:description" content="The abstract class that implements some shared functionality used by widgets. Inreality, there aren’t any abstract methods to implement, as widgets areconstructed via vtkAbstractWidgetFactory. vtkAbst">
+<meta property="og:description" content="IntroductionvtkAbstractWidget is an abstract class to construct a widget. MethodsactivateHandleActivate a handle, identified by both a state and a representation.Will also invoke appropriate events.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-06-15T17:44:13.085Z">
-<meta property="article:modified_time" content="2022-06-15T17:44:13.085Z">
+<meta property="article:published_time" content="2022-06-15T20:52:28.194Z">
+<meta property="article:modified_time" content="2022-06-15T20:52:28.194Z">
 <meta property="article:author" content="Kitware Inc.">
 <meta name="twitter:card" content="summary">
   <!-- Google Analytics -->
@@ -113,17 +113,266 @@
                 <h1 class="article-title" itemprop="name">AbstractWidget</h1>
               </header>
               <div class="article-content" itemprop="articleBody">
-                <p>The abstract class that implements some shared functionality used by widgets. In<br>reality, there aren’t any abstract methods to implement, as widgets are<br>constructed via vtkAbstractWidgetFactory.</p>
-<p>vtkAbstractWidget extends from vtkInteractorObserver.</p>
-<h2 id="getWidgetManager" class="article-heading"><a href="#getWidgetManager" class="headerlink" title="getWidgetManager()"></a>getWidgetManager()<a class="article-anchor" href="#getWidgetManager" aria-hidden="true"></a></h2><p>Returns the widget manager the widget has been registered into.</p>
-<h2 id="setWidgetManager-widgetManager" class="article-heading"><a href="#setWidgetManager-widgetManager" class="headerlink" title="setWidgetManager(widgetManager)"></a>setWidgetManager(widgetManager)<a class="article-anchor" href="#setWidgetManager-widgetManager" aria-hidden="true"></a></h2><p>Automatically called by the widget manager when widget is registered.</p>
-<h2 id="getViewWidgets" class="article-heading"><a href="#getViewWidgets" class="headerlink" title="getViewWidgets()"></a>getViewWidgets()<a class="article-anchor" href="#getViewWidgets" aria-hidden="true"></a></h2><p>Returns all the registered view widgets of the factory.<br>A widget is registered when added to a view (i.e. widgetManager).</p>
+                <h2 id="Introduction" class="article-heading"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction<a class="article-anchor" href="#Introduction" aria-hidden="true"></a></h2><p>vtkAbstractWidget is an abstract class to construct a widget.</p>
+<h2 id="Methods" class="article-heading"><a href="#Methods" class="headerlink" title="Methods"></a>Methods<a class="article-anchor" href="#Methods" aria-hidden="true"></a></h2><h3 id="activateHandle" class="article-heading"><a href="#activateHandle" class="headerlink" title="activateHandle"></a>activateHandle<a class="article-anchor" href="#activateHandle" aria-hidden="true"></a></h3><p>Activate a handle, identified by both a state and a representation.<br>Will also invoke appropriate events.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>locator</code></td>
+<td></td>
+<td>Yes</td>
+<td>An object describing the handle to activate.</td>
+</tr>
+</tbody></table>
+<h3 id="deactivateAllHandles" class="article-heading"><a href="#deactivateAllHandles" class="headerlink" title="deactivateAllHandles"></a>deactivateAllHandles<a class="article-anchor" href="#deactivateAllHandles" aria-hidden="true"></a></h3><p>Deactivate all the handles on the widget instance.</p>
+<h3 id="extend" class="article-heading"><a href="#extend" class="headerlink" title="extend"></a>extend<a class="article-anchor" href="#extend" aria-hidden="true"></a></h3><p>Method used to decorate a given object (publicAPI+model) with vtkAbstractWidget characteristics.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>publicAPI</code></td>
+<td></td>
+<td>Yes</td>
+<td>object on which methods will be bounds (public)</td>
+</tr>
+<tr>
+<td><code>model</code></td>
+<td></td>
+<td>Yes</td>
+<td>object on which data structure will be bounds (protected)</td>
+</tr>
+<tr>
+<td><code>initialValues</code></td>
+<td></td>
+<td>Yes</td>
+<td>(default: {})</td>
+</tr>
+</tbody></table>
+<h3 id="getBounds" class="article-heading"><a href="#getBounds" class="headerlink" title="getBounds"></a>getBounds<a class="article-anchor" href="#getBounds" aria-hidden="true"></a></h3><p>Get the bounds of the widget</p>
+<h3 id="getContextVisibility" class="article-heading"><a href="#getContextVisibility" class="headerlink" title="getContextVisibility"></a>getContextVisibility<a class="article-anchor" href="#getContextVisibility" aria-hidden="true"></a></h3><p>Get the context visibility.</p>
+<h3 id="getHandleVisibility" class="article-heading"><a href="#getHandleVisibility" class="headerlink" title="getHandleVisibility"></a>getHandleVisibility<a class="article-anchor" href="#getHandleVisibility" aria-hidden="true"></a></h3><p>Returns true if the handles are visible, false otherwise.</p>
+<h3 id="getNestedProps" class="article-heading"><a href="#getNestedProps" class="headerlink" title="getNestedProps"></a>getNestedProps<a class="article-anchor" href="#getNestedProps" aria-hidden="true"></a></h3><p>Get all representations of the widget.</p>
+<h3 id="getPlaceFactor" class="article-heading"><a href="#getPlaceFactor" class="headerlink" title="getPlaceFactor"></a>getPlaceFactor<a class="article-anchor" href="#getPlaceFactor" aria-hidden="true"></a></h3><p>Get the place factor.</p>
+<h3 id="getRepresentationFromActor" class="article-heading"><a href="#getRepresentationFromActor" class="headerlink" title="getRepresentationFromActor"></a>getRepresentationFromActor<a class="article-anchor" href="#getRepresentationFromActor" aria-hidden="true"></a></h3><p>Get the <code>vtkWidgetRepresentation</code> instance associated with the given <code>vtkActor</code> instance.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>actor</code></td>
+<td>vtkProp</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="getRepresentations" class="article-heading"><a href="#getRepresentations" class="headerlink" title="getRepresentations"></a>getRepresentations<a class="article-anchor" href="#getRepresentations" aria-hidden="true"></a></h3><p>Get all the representations of the widget instance.</p>
+<h3 id="getViewWidgets" class="article-heading"><a href="#getViewWidgets" class="headerlink" title="getViewWidgets"></a>getViewWidgets<a class="article-anchor" href="#getViewWidgets" aria-hidden="true"></a></h3><p>Get all the underlyings view widgets.</p>
+<h3 id="getWidgetManager" class="article-heading"><a href="#getWidgetManager" class="headerlink" title="getWidgetManager"></a>getWidgetManager<a class="article-anchor" href="#getWidgetManager" aria-hidden="true"></a></h3><p>Get the widget manager associated with the widget instance.</p>
+<h3 id="getWidgetState" class="article-heading"><a href="#getWidgetState" class="headerlink" title="getWidgetState"></a>getWidgetState<a class="article-anchor" href="#getWidgetState" aria-hidden="true"></a></h3><p>Get the the state of the widget instance.</p>
+<h3 id="grabFocus" class="article-heading"><a href="#grabFocus" class="headerlink" title="grabFocus"></a>grabFocus<a class="article-anchor" href="#grabFocus" aria-hidden="true"></a></h3><p>Make the widget instance grab the focus.<br>Should not be called directly or this will lead to unexpected behavior.<br>To grab the focus on a widget, one should call <code>vtkWidgetManager.grabFocus(widgetInstanceToGiveFocusTo)</code></p>
+<h3 id="hasActor" class="article-heading"><a href="#hasActor" class="headerlink" title="hasActor"></a>hasActor<a class="article-anchor" href="#hasActor" aria-hidden="true"></a></h3><p>Returns true if the widget instance holds the given actor, false otherwise.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>actor</code></td>
+<td>vtkProp</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="hasFocus" class="article-heading"><a href="#hasFocus" class="headerlink" title="hasFocus"></a>hasFocus<a class="article-anchor" href="#hasFocus" aria-hidden="true"></a></h3><p>Returns true if the widget instance holds the focus, false otherwise.</p>
+<h3 id="invokeActivateHandle" class="article-heading"><a href="#invokeActivateHandle" class="headerlink" title="invokeActivateHandle"></a>invokeActivateHandle<a class="article-anchor" href="#invokeActivateHandle" aria-hidden="true"></a></h3><p>Invoke the <code>ActivateHandle</code> event with the given payload.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>args</code></td>
+<td></td>
+<td>Yes</td>
+<td>The event payload</td>
+</tr>
+</tbody></table>
+<h3 id="loseFocus" class="article-heading"><a href="#loseFocus" class="headerlink" title="loseFocus"></a>loseFocus<a class="article-anchor" href="#loseFocus" aria-hidden="true"></a></h3><p>Make the widget instance release the focus.</p>
+<h3 id="newInstance" class="article-heading"><a href="#newInstance" class="headerlink" title="newInstance"></a>newInstance<a class="article-anchor" href="#newInstance" aria-hidden="true"></a></h3><p>Method used to create a new instance of vtkAbstractWidget</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>initialValues</code></td>
+<td></td>
+<td>Yes</td>
+<td>For pre-setting some of its content</td>
+</tr>
+</tbody></table>
+<h3 id="onActivateHandle" class="article-heading"><a href="#onActivateHandle" class="headerlink" title="onActivateHandle"></a>onActivateHandle<a class="article-anchor" href="#onActivateHandle" aria-hidden="true"></a></h3><p>Register a callback to be invoked when the <code>ActivateHandle</code> event occurs.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>cb</code></td>
+<td>EventHandler</td>
+<td>Yes</td>
+<td>The callback to register</td>
+</tr>
+<tr>
+<td><code>priority</code></td>
+<td>Number</td>
+<td>No</td>
+<td>Priority of this subscription</td>
+</tr>
+</tbody></table>
+<h3 id="placeWidget" class="article-heading"><a href="#placeWidget" class="headerlink" title="placeWidget"></a>placeWidget<a class="article-anchor" href="#placeWidget" aria-hidden="true"></a></h3><p>Place a widget at the given bounds.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bounds</code></td>
+<td>Bounds</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="setContextVisibility" class="article-heading"><a href="#setContextVisibility" class="headerlink" title="setContextVisibility"></a>setContextVisibility<a class="article-anchor" href="#setContextVisibility" aria-hidden="true"></a></h3><p>Set the context visibility.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>visible</code></td>
+<td>Boolean</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="setHandleVisibility" class="article-heading"><a href="#setHandleVisibility" class="headerlink" title="setHandleVisibility"></a>setHandleVisibility<a class="article-anchor" href="#setHandleVisibility" aria-hidden="true"></a></h3><p>Defines if the handles should be visible or not.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>visible</code></td>
+<td>Boolean</td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="setPlaceFactor" class="article-heading"><a href="#setPlaceFactor" class="headerlink" title="setPlaceFactor"></a>setPlaceFactor<a class="article-anchor" href="#setPlaceFactor" aria-hidden="true"></a></h3><p>Set the place factor.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>factor</code></td>
+<td>Number</td>
+<td>Yes</td>
+<td>The place factor.</td>
+</tr>
+</tbody></table>
+<h3 id="setWidgetManager" class="article-heading"><a href="#setWidgetManager" class="headerlink" title="setWidgetManager"></a>setWidgetManager<a class="article-anchor" href="#setWidgetManager" aria-hidden="true"></a></h3><p>Set the widget manager associated with the widget instance.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>wm</code></td>
+<td>vtkWidgetManager</td>
+<td>Yes</td>
+<td>The widget manager instance</td>
+</tr>
+</tbody></table>
+<h3 id="updateRepresentationForRender" class="article-heading"><a href="#updateRepresentationForRender" class="headerlink" title="updateRepresentationForRender"></a>updateRepresentationForRender<a class="article-anchor" href="#updateRepresentationForRender" aria-hidden="true"></a></h3><p>Update all the widget representations for render.</p>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>renderingType</code></td>
+<td>RenderingTypes</td>
+<td>Yes</td>
+<td>Default value if <code>RenderingTypes.FRONT_BUFFER</code></td>
+</tr>
+</tbody></table>
 <h1 id="Source" class="article-heading"><a href="#Source" class="headerlink" title="Source"></a>Source<a class="article-anchor" href="#Source" aria-hidden="true"></a></h1><figure class="highlight js"><figcaption><span>Constants.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> <span class="variable constant_">WIDGET_PRIORITY</span> = <span class="number">0.5</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; <span class="variable constant_">WIDGET_PRIORITY</span> &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><figcaption><span>index.d.ts</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> vtkInteractorObserver <span class="keyword">from</span> <span class="string">&#x27;../../../Rendering/Core/InteractorObserver&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> vtkProp <span class="keyword">from</span> <span class="string">&#x27;../../../Rendering/Core/Prop&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> vtkRenderer <span class="keyword">from</span> <span class="string">&quot;../../../Rendering/Core/Renderer&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> vtkWidgetManager <span class="keyword">from</span> <span class="string">&#x27;../WidgetManager&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> vtkWidgetRepresentation <span class="keyword">from</span> <span class="string">&#x27;../../Representations/WidgetRepresentation&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> vtkWidgetState <span class="keyword">from</span> <span class="string">&#x27;../WidgetState&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">Bounds</span> &#125; <span class="keyword">from</span> <span class="string">&quot;../../../types&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">RenderingTypes</span> &#125; <span class="keyword">from</span> <span class="string">&quot;../WidgetManager/Constants&quot;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">EventHandler</span>, vtkSubscription &#125; <span class="keyword">from</span> <span class="string">&#x27;../../../interfaces&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> interface vtkAbstractWidget <span class="keyword">extends</span> vtkProp, vtkInteractorObserver &#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Get the bounds of the widget</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getBounds</span>(): <span class="title class_">Bounds</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Get all representations of the widget.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getNestedProps</span>(): vtkWidgetRepresentation[];</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Activate a handle, identified by both a state and a representation.</span></span><br><span class="line"><span class="comment">   * Will also invoke appropriate events.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> locator An object describing the handle to activate.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">activateHandle</span>(<span class="attr">locator</span>: &#123; </span><br><span class="line">    <span class="attr">selectedState</span>: vtkWidgetState; </span><br><span class="line">    <span class="attr">representation</span>: vtkWidgetRepresentation; </span><br><span class="line">  &#125;): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Deactivate all the handles on the widget instance.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">deactivateAllHandles</span>(): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Returns true if the widget instance holds the given actor, false otherwise.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">vtkProp</span>&#125; <span class="variable">actor</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">hasActor</span>(<span class="attr">actor</span>: vtkProp): boolean;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Make the widget instance grab the focus.</span></span><br><span class="line"><span class="comment">   * Should not be called directly or this will lead to unexpected behavior.</span></span><br><span class="line"><span class="comment">   * To grab the focus on a widget, one should call `vtkWidgetManager.grabFocus(widgetInstanceToGiveFocusTo)`</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">grabFocus</span>(): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Make the widget instance release the focus.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">loseFocus</span>(): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Returns true if the widget instance holds the focus, false otherwise.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">hasFocus</span>(): boolean;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Place a widget at the given bounds.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">Bounds</span>&#125; <span class="variable">bounds</span></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">placeWidget</span>(<span class="attr">bounds</span>: <span class="title class_">Bounds</span>): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Get the place factor.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getPlaceFactor</span>(): number;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Set the place factor.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">Number</span>&#125; factor The place factor.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">setPlaceFactor</span>(<span class="attr">factor</span>: number): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Get the `vtkWidgetRepresentation` instance associated with the given `vtkActor` instance.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">vtkProp</span>&#125; actor </span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getRepresentationFromActor</span>(<span class="attr">actor</span>: vtkProp): vtkWidgetRepresentation;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Update all the widget representations for render.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">RenderingTypes</span>&#125; renderingType Default value if `RenderingTypes.FRONT_BUFFER` </span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">updateRepresentationForRender</span>(<span class="attr">renderingType</span>: <span class="title class_">RenderingTypes</span>): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Get all the underlyings view widgets.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getViewWidgets</span>(): vtkAbstractWidget[];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Set the context visibility.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">Boolean</span>&#125; visible </span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">setContextVisibility</span>(<span class="attr">visible</span>: boolean): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Get the context visibility.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getContextVisibility</span>(): boolean;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Defines if the handles should be visible or not.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">Boolean</span>&#125; visible </span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">setHandleVisibility</span>(<span class="attr">visible</span>: boolean): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Returns true if the handles are visible, false otherwise.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getHandleVisibility</span>(): boolean;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Set the widget manager associated with the widget instance.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">vtkWidgetManager</span>&#125; wm The widget manager instance</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">setWidgetManager</span>(<span class="attr">wm</span>: vtkWidgetManager): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Get the widget manager associated with the widget instance.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getWidgetManager</span>(): vtkWidgetManager;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Get all the representations of the widget instance.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getRepresentations</span>(): vtkWidgetRepresentation[];</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Get the the state of the widget instance.</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">getWidgetState</span>(): vtkWidgetState;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Register a callback to be invoked when the `ActivateHandle` event occurs.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">EventHandler</span>&#125; cb The callback to register</span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> &#123;<span class="type">Number</span>&#125; [priority] Priority of this subscription</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">onActivateHandle</span>(<span class="attr">cb</span>: <span class="title class_">EventHandler</span>, priority?: number): <span class="title class_">Readonly</span>&lt;vtkSubscription&gt;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * Invoke the `ActivateHandle` event with the given payload.</span></span><br><span class="line"><span class="comment">   * </span></span><br><span class="line"><span class="comment">   * <span class="doctag">@param</span> args The event payload</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="title function_">invokeActivateHandle</span>(...<span class="attr">args</span>: unknown[]): <span class="keyword">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Method used to decorate a given object (publicAPI+model) with vtkAbstractWidget characteristics.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> publicAPI object on which methods will be bounds (public)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> model object on which data structure will be bounds (protected)</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> initialValues (default: &#123;&#125;)</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">extend</span>(<span class="params">publicAPI: object, model: object, initialValues? : object</span>): <span class="keyword">void</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Method used to create a new instance of vtkAbstractWidget</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> initialValues For pre-setting some of its content</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">newInstance</span>(<span class="params">initialValues?: object</span>): vtkAbstractWidget;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * vtkAbstractWidget is an abstract class to construct a widget.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> declare <span class="keyword">const</span> <span class="attr">vtkAbstractWidget</span>: &#123;</span><br><span class="line">	<span class="attr">newInstance</span>: <span class="keyword">typeof</span> newInstance,</span><br><span class="line">	<span class="attr">extend</span>: <span class="keyword">typeof</span> extend,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> vtkAbstractWidget;</span><br></pre></td></tr></table></figure>
 <figure class="highlight js"><figcaption><span>index.js</span></figcaption><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> macro <span class="keyword">from</span> <span class="string">&#x27;vtk.js/Sources/macros&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> vtkInteractorObserver <span class="keyword">from</span> <span class="string">&#x27;vtk.js/Sources/Rendering/Core/InteractorObserver&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> vtkProp <span class="keyword">from</span> <span class="string">&#x27;vtk.js/Sources/Rendering/Core/Prop&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="title class_">RenderingTypes</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;vtk.js/Sources/Widgets/Core/WidgetManager/Constants&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; <span class="variable constant_">WIDGET_PRIORITY</span> &#125; <span class="keyword">from</span> <span class="string">&#x27;vtk.js/Sources/Widgets/Core/AbstractWidget/Constants&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">vtkAbstractWidget</span>(<span class="params">publicAPI, model</span>) &#123;</span><br><span class="line">  model.<span class="property">classHierarchy</span>.<span class="title function_">push</span>(<span class="string">&#x27;vtkAbstractWidget&#x27;</span>);</span><br><span class="line">  model.<span class="property">actorToRepresentationMap</span> = <span class="keyword">new</span> <span class="title class_">WeakMap</span>();</span><br><span class="line"></span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line">  publicAPI.<span class="property">getBounds</span> = model.<span class="property">widgetState</span>.<span class="property">getBounds</span>;</span><br><span class="line">  publicAPI.<span class="property">getNestedProps</span> = <span class="function">() =&gt;</span> model.<span class="property">representations</span>;</span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  publicAPI.<span class="property">activateHandle</span> = <span class="function">(<span class="params">&#123; selectedState, representation &#125;</span>) =&gt;</span> &#123;</span><br><span class="line">    model.<span class="property">widgetState</span>.<span class="title function_">activateOnly</span>(selectedState);</span><br><span class="line">    model.<span class="property">activeState</span> = selectedState;</span><br><span class="line">    <span class="keyword">if</span> (selectedState &amp;&amp; selectedState.<span class="property">updateManipulator</span>) &#123;</span><br><span class="line">      selectedState.<span class="title function_">updateManipulator</span>();</span><br><span class="line">    &#125;</span><br><span class="line">    publicAPI.<span class="title function_">invokeActivateHandle</span>(&#123; selectedState, representation &#125;);</span><br><span class="line">    <span class="keyword">if</span> (publicAPI.<span class="property">updateCursor</span>) &#123;</span><br><span class="line">      publicAPI.<span class="title function_">updateCursor</span>();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  publicAPI.<span class="property">deactivateAllHandles</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    model.<span class="property">widgetState</span>.<span class="title function_">deactivate</span>();</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  publicAPI.<span class="property">hasActor</span> = <span class="function">(<span class="params">actor</span>) =&gt;</span> model.<span class="property">actorToRepresentationMap</span>.<span class="title function_">has</span>(actor);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  publicAPI.<span class="property">grabFocus</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    model.<span class="property">hasFocus</span> = <span class="literal">true</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  publicAPI.<span class="property">loseFocus</span> = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    model.<span class="property">hasFocus</span> = <span class="literal">false</span>;</span><br><span class="line">  &#125;;</span><br><span class="line">  publicAPI.<span class="property">hasFocus</span> = <span class="function">() =&gt;</span> model.<span class="property">hasFocus</span>;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  publicAPI.<span class="property">placeWidget</span> = <span class="function">(<span class="params">bounds</span>) =&gt;</span> model.<span class="property">widgetState</span>.<span class="title function_">placeWidget</span>(bounds);</span><br><span class="line">  publicAPI.<span class="property">getPlaceFactor</span> = <span class="function">() =&gt;</span> model.<span class="property">widgetState</span>.<span class="title function_">getPlaceFactor</span>();</span><br><span class="line">  publicAPI.<span class="property">setPlaceFactor</span> = <span class="function">(<span class="params">factor</span>) =&gt;</span></span><br><span class="line">    model.<span class="property">widgetState</span>.<span class="title function_">setPlaceFactor</span>(factor);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  publicAPI.<span class="property">getRepresentationFromActor</span> = <span class="function">(<span class="params">actor</span>) =&gt;</span></span><br><span class="line">    model.<span class="property">actorToRepresentationMap</span>.<span class="title function_">get</span>(actor);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  publicAPI.<span class="property">updateRepresentationForRender</span> = <span class="function">(<span class="params"></span></span></span><br><span class="line"><span class="params"><span class="function">    renderingType = RenderingTypes.FRONT_BUFFER</span></span></span><br><span class="line"><span class="params"><span class="function">  </span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; model.<span class="property">representations</span>.<span class="property">length</span>; i++) &#123;</span><br><span class="line">      <span class="keyword">const</span> representation = model.<span class="property">representations</span>[i];</span><br><span class="line">      representation.<span class="title function_">updateActorVisibility</span>(</span><br><span class="line">        renderingType,</span><br><span class="line">        model.<span class="property">contextVisibility</span>,</span><br><span class="line">        model.<span class="property">handleVisibility</span></span><br><span class="line">      );</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  publicAPI.<span class="property">getViewWidgets</span> = <span class="function">() =&gt;</span></span><br><span class="line">    model.<span class="property">_factory</span></span><br><span class="line">      .<span class="title function_">getViewIds</span>()</span><br><span class="line">      .<span class="title function_">map</span>(<span class="function">(<span class="params">viewId</span>) =&gt;</span> model.<span class="property">_factory</span>.<span class="title function_">getWidgetForView</span>(&#123; viewId &#125;));</span><br><span class="line"></span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line">  <span class="comment">// Initialization calls</span></span><br><span class="line">  <span class="comment">// --------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line">  publicAPI.<span class="title function_">setPriority</span>(<span class="variable constant_">WIDGET_PRIORITY</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">DEFAULT_VALUES</span> = &#123;</span><br><span class="line">  <span class="attr">contextVisibility</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">handleVisibility</span>: <span class="literal">true</span>,</span><br><span class="line">  <span class="attr">hasFocus</span>: <span class="literal">false</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; publicAPI public methods to populate</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">*</span>&#125; model internal values to populate</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">object</span>&#125; initialValues Contains at least</span></span><br><span class="line"><span class="comment"> *   &#123;viewType, _renderer, _camera, _openGLRenderWindow, _factory&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">function</span> <span class="title function_">extend</span>(<span class="params">publicAPI, model, initialValues = &#123;&#125;</span>) &#123;</span><br><span class="line">  <span class="title class_">Object</span>.<span class="title function_">assign</span>(model, <span class="variable constant_">DEFAULT_VALUES</span>, initialValues);</span><br><span class="line"></span><br><span class="line">  vtkProp.<span class="title function_">extend</span>(publicAPI, model, initialValues);</span><br><span class="line">  vtkInteractorObserver.<span class="title function_">extend</span>(publicAPI, model, initialValues);</span><br><span class="line"></span><br><span class="line">  macro.<span class="title function_">setGet</span>(publicAPI, model, [</span><br><span class="line">    <span class="string">&#x27;contextVisibility&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;handleVisibility&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;_widgetManager&#x27;</span>,</span><br><span class="line">  ]);</span><br><span class="line">  macro.<span class="title function_">get</span>(publicAPI, model, [<span class="string">&#x27;representations&#x27;</span>, <span class="string">&#x27;widgetState&#x27;</span>]);</span><br><span class="line">  macro.<span class="title function_">moveToProtected</span>(publicAPI, model, [<span class="string">&#x27;widgetManager&#x27;</span>]);</span><br><span class="line">  macro.<span class="title function_">event</span>(publicAPI, model, <span class="string">&#x27;ActivateHandle&#x27;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="title function_">vtkAbstractWidget</span>(publicAPI, model);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> newInstance = macro.<span class="title function_">newInstance</span>(extend, <span class="string">&#x27;vtkAbstractWidget&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ----------------------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123; newInstance, extend &#125;;</span><br></pre></td></tr></table></figure>
 
               </div>
               <footer class="article-footer">
-                <time class="article-footer-updated" datetime="2022-06-15T17:44:13.085Z" itemprop="dateModified">Last updated: 2022-06-15</time>
+                <time class="article-footer-updated" datetime="2022-06-15T20:52:28.194Z" itemprop="dateModified">Last updated: 2022-06-15</time>
                 <a href="Testing_Examples_WindTunnel.html" class="article-footer-prev" title="WindTunnel"><i class="fa fa-chevron-left"></i><span>Prev</span></a><a href="Widgets_Core_AbstractWidgetFactory.html" class="article-footer-next" title="AbstractWidgetFactory"><span>Next</span><i class="fa fa-chevron-right"></i></a>
               </footer>
               
@@ -132,7 +381,7 @@
           <aside id="article-toc" role="navigation">
             <div id="article-toc-inner">
               <strong class="sidebar-title">Contents</strong>
-              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#getWidgetManager"><span class="toc-text">getWidgetManager()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setWidgetManager-widgetManager"><span class="toc-text">setWidgetManager(widgetManager)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#getViewWidgets"><span class="toc-text">getViewWidgets()</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Source"><span class="toc-text">Source</span></a>
+              <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Methods"><span class="toc-text">Methods</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#activateHandle"><span class="toc-text">activateHandle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#deactivateAllHandles"><span class="toc-text">deactivateAllHandles</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extend"><span class="toc-text">extend</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getBounds"><span class="toc-text">getBounds</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getContextVisibility"><span class="toc-text">getContextVisibility</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getHandleVisibility"><span class="toc-text">getHandleVisibility</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getNestedProps"><span class="toc-text">getNestedProps</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getPlaceFactor"><span class="toc-text">getPlaceFactor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getRepresentationFromActor"><span class="toc-text">getRepresentationFromActor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getRepresentations"><span class="toc-text">getRepresentations</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getViewWidgets"><span class="toc-text">getViewWidgets</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getWidgetManager"><span class="toc-text">getWidgetManager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getWidgetState"><span class="toc-text">getWidgetState</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#grabFocus"><span class="toc-text">grabFocus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hasActor"><span class="toc-text">hasActor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hasFocus"><span class="toc-text">hasFocus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#invokeActivateHandle"><span class="toc-text">invokeActivateHandle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#loseFocus"><span class="toc-text">loseFocus</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#newInstance"><span class="toc-text">newInstance</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#onActivateHandle"><span class="toc-text">onActivateHandle</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#placeWidget"><span class="toc-text">placeWidget</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setContextVisibility"><span class="toc-text">setContextVisibility</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setHandleVisibility"><span class="toc-text">setHandleVisibility</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setPlaceFactor"><span class="toc-text">setPlaceFactor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#setWidgetManager"><span class="toc-text">setWidgetManager</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#updateRepresentationForRender"><span class="toc-text">updateRepresentationForRender</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Source"><span class="toc-text">Source</span></a>
               <a href="#" id="article-toc-top">Back to Top</a>
             </div>
           </aside>
