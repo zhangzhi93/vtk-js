@@ -19,6 +19,7 @@ import vtkOutlineFilter from 'vtk.js/Sources/Filters/General/OutlineFilter';
 import vtkOrientationMarkerWidget from 'vtk.js/Sources/Interaction/Widgets/OrientationMarkerWidget';
 import vtkResliceCursorWidget from 'vtk.js/Sources/Widgets/Widgets3D/ResliceCursorWidget';
 import vtkWidgetManager from 'vtk.js/Sources/Widgets/Core/WidgetManager';
+import vtkAngleWidget from 'vtk.js/Sources/Widgets/Widgets3D/AngleWidget';
 
 import vtkSphereSource from 'vtk.js/Sources/Filters/Sources/SphereSource';
 import { CaptureOn } from 'vtk.js/Sources/Widgets/Core/WidgetManager/Constants';
@@ -310,6 +311,19 @@ reader.setUrl(`${__BASE_PATH__}/data/volume/LIDC2.vti`).then(() => {
       });
       const reslice = obj.reslice;
       const viewType = xyzToViewType[i];
+
+      //
+      const angleWidget = vtkAngleWidget.newInstance();
+      angleWidget.placeWidget(obj.resliceMapper.getBounds());
+
+      obj.widgetManager.addWidget(angleWidget);
+
+      obj.renderer.resetCamera();
+      obj.widgetManager.enablePicking();
+
+      setTimeout(() => {
+        obj.widgetManager.grabFocus(angleWidget);
+      }, 1000);
 
       viewAttributes
         // No need to update plane nor refresh when interaction
